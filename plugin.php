@@ -1,5 +1,28 @@
 <?php
 
+add_action( 'activated_plugin', 'es_github_plugin_updater_load_first' );
+function es_github_plugin_updater_load_first()
+{
+	$path = basename(dirname(__FILE__)) .'/'. basename(__FILE__);
+
+	if ( $plugins = get_option( 'active_plugins' ) ) {
+		ob_start();
+		var_dump($plugins);
+		$stuff = ob_get_clean();
+		error_log($stuff, 3, dirname(__FILE__). '/log.txt');
+		if ( $key = array_search( $path, $plugins ) ) {
+			//error_log($key, 3, dirname(__FILE__). '/log.txt');
+			array_splice( $plugins, $key, 1 );
+			array_unshift( $plugins, $path );
+			update_option( 'active_plugins', $plugins );
+			ob_start();
+			var_dump(get_option( 'active_plugins' ));
+			$stuff = ob_get_clean();
+			error_log($stuff, 3, dirname(__FILE__). '/log.txt');
+		}
+	}
+}
+
 /*
 Plugin Name: GitHub Plugin Updater
 Plugin URI:
