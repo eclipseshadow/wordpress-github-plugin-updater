@@ -1,5 +1,15 @@
 <?php
 
+/*
+Plugin Name: GitHub Plugin Updater
+Plugin URI:
+Description: Allows automatic updating for plugins hosted on GitHub
+Version: 0.2.6
+Author: Zach Lanich
+Author URI: https://www.ZachLanich.com
+License: Undecided
+*/
+
 add_action( 'activated_plugin', 'es_github_plugin_updater_load_first' );
 function es_github_plugin_updater_load_first()
 {
@@ -22,16 +32,6 @@ function es_github_plugin_updater_load_first()
 		}
 	}
 }
-
-/*
-Plugin Name: GitHub Plugin Updater
-Plugin URI:
-Description: Allows automatic updating for plugins hosted on GitHub
-Version: 0.1
-Author: Zach Lanich
-Author URI: https://www.ZachLanich.com
-License: Undecided
-*/
 
 /**
  * Class WP_GitHub_Plugin_Updater
